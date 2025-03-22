@@ -1,105 +1,70 @@
-# Airline Booking System
+# Airline Booking Microservices
 
-## Overview
-This is a microservices-based airline booking system that allows users to:
-- **Check-in**
-- **Select a seat**
-- **Add baggage**
-- **Add seat & baggage to the cart**
-- **Make a payment**
-- **Receive a check-in confirmation**
-
-The backend is built with **Spring Boot (Java)**, and the frontend is built with **React.js**.
-
----
+This project consists of microservices for airline check-in, seat selection, baggage addition, and payment processing.
 
 ## Technologies Used
-### Backend
-- Spring Boot
-- Spring Data JPA
+- Spring Boot (Backend)
+- React (Frontend)
 - MySQL (Database)
-- Spring Security (for authentication)
-- RESTful APIs
+- Axios (API Calls)
 
-### Frontend
-- React.js
-- Axios (for API calls)
-- React Router (for navigation)
-- Bootstrap (for UI styling)
+## Microservices
+1. **Check-in Service** (`localhost:8081/checkin/{userId}`)
+2. **Seat Selection Service** (`localhost:8084/seat/map`, `localhost:8084/seat/select/{seatNumber}`)
+3. **Cart Service** (`localhost:8080/cart/add?userId={userId}&seatNumber={seatNumber}&baggageCount={count}`)
+4. **Payment Service** (`localhost:8083/payment/pay?userId={userId}&amount={amount}`)
+5. **Check-in Confirmation** (`localhost:8082/confirmation/{userId}`)
 
----
-
-## Backend Setup (Spring Boot)
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/priyanshubirlaa/airline
-   cd airline-booking-system
-   ```
-2. Import the project into an IDE (e.g., IntelliJ, Eclipse).
-3. Configure the database in `application.properties`:
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/airline_db
-   spring.datasource.username=root
-   spring.datasource.password=yourpassword
-   spring.jpa.hibernate.ddl-auto=update
-   ```
-4. Build and run the Spring Boot services:
+## Setup Instructions
+### Backend
+1. Clone the repository: `git clone (https://github.com/priyanshubirlaa/airline)
+2. Navigate to the backend project directory.
+3. Start MySQL and configure database settings in `application.properties`.
+4. Build and run each Spring Boot microservice individually using:
    ```sh
    mvn clean install
    mvn spring-boot:run
    ```
 
-### Microservices & Endpoints
-| Service  | Port  | Endpoints |
-|----------|------|----------|
-| Check-in Service | `8081` | `/checkin/{userId}` |
-| Seat Selection | `8084` | `/seat/map`, `/seat/select/{seatNumber}` |
-| Cart Service | `8080` | `/cart/add?userId={id}&seatNumber={seat}&baggageCount={count}` |
-| Payment Service | `8083` | `/payment/pay?userId={id}&amount={amount}` |
-
----
-
-## Frontend Setup (React)
-1. Navigate to the frontend directory:
-   ```sh
-   cd airline-frontend
-   ```
+### Frontend
+1. Navigate to the `react-frontend` directory.
 2. Install dependencies:
    ```sh
    npm install
    ```
-3. Start the development server:
+3. Start the React application:
    ```sh
    npm start
    ```
 
-### React Pages
-| Page | Path | Functionality |
-|------|------|--------------|
-| Home | `/` | Landing page |
-| Seat Selection | `/seat-selection` | Displays available seats, allows seat selection |
-| Cart | `/cart` | Allows users to add seat & baggage to cart |
-| Payment | `/payment` | Handles payment transactions |
-| Confirmation | `/confirmation` | Displays check-in confirmation |
+## Features
+- Users can **check-in** and get a confirmation.
+- A **seat map** is displayed, allowing users to select seats.
+- Users can add **seats and baggage** to a cart before checkout.
+- Payments are processed via the **Payment Service**.
+- **Check-in confirmation** is displayed after payment.
 
----
+## Usage
+1. Open the React app in a browser (`localhost:3000`).
+2. Select a seat and add baggage to the cart.
+3. Proceed to payment and complete the transaction.
+4. Receive a **check-in confirmation** via `localhost:8082/confirmation/{userId}`.
 
-## Key Features & Restrictions
-- **A user cannot check in twice**
-- **A user cannot select a booked seat**
-- **Cannot pay twice for the same booking**
-- **Prevents duplicate seat selections**
+### Notes
+- Users **cannot** check in again once checked in.
+- Seats **cannot** be selected if already booked.
+- Payments **cannot** be made twice for the same seat.
 
----
+## API Endpoints
+| Service | Endpoint |
+|---------|----------|
+| Check-in | `GET localhost:8081/checkin/{userId}` |
+| Seat Map | `GET localhost:8084/seat/map` |
+| Select Seat | `POST localhost:8084/seat/select/{seatNumber}` |
+| Add to Cart | `POST localhost:8080/cart/add?userId={userId}&seatNumber={seatNumber}&baggageCount={count}` |
+| Payment | `POST localhost:8083/payment/pay?userId={userId}&amount={amount}` |
+| Check-in Confirmation | `GET localhost:8082/confirmation/{userId}` |
 
-## Future Improvements
-- Implement JWT authentication for security.
-- Add email notifications after booking confirmation.
-- Enhance UI with better seat selection visualization.
-
----
-
-## Contributors
-- **Your Name** - [GitHub]([https://github.com/your-profile](https://github.com/priyanshubirlaa
-
+## Author
+Priyanshu Birla
 
