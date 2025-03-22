@@ -100,10 +100,6 @@ The backend is built with **Spring Boot (Java)**, and the frontend is built with
 ---
 
 ## Contributors
-- **Your Name** - [GitHub](https://github.com/your-profile)
+- **Your Name** - [GitHub]([https://github.com/your-profile](https://github.com/priyanshubirlaa
 
----
-
-## License
-This project is licensed under the MIT License.
 
